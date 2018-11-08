@@ -1,17 +1,17 @@
 #!/usr/bin/env groovy
-def call(args) {
+def String call(elbJson) {
+elbJson = elbJson.substring(elbJson.indexOf("\"DNSName\":"),elbJson.length())
+elbJson = elbJson.substring(0,elbJson.indexOf(","))
+elbJson = elbJson.replace("\"DNSName\": ","http://")
+elbJson = elbJson.replace("\"","")
       echo "Global liberary is called -${args}"
       Properties props = new Properties()
 File propsFile = new File('pipeline/config.properties')
 props.load(propsFile.newDataInputStream())
-println props.getProperty('TEST_SERVER_BASE_URL')
-
-
-props.setProperty('TEST_SERVER_BASE_URL', args.toString())
-props.setProperty('TEST_SERVER_BASE_URLK', 'abc')
+props.setProperty('TEST_SERVER_BASE_URL', elbJson.toString())
 
 props.store(propsFile.newWriter(), null)
 
 props.load(propsFile.newDataInputStream())
-println props.getProperty('TEST_SERVER_BASE_URL')
+return elbJson
 }
