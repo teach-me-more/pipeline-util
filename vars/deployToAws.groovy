@@ -2,21 +2,21 @@
 def call() {
                  def stackExists
                    try{
-                 stackExists = sh (script: 'aws cloudformation describe-stacks --stack-name aws-code-deploy-${Environment}',returnStdout: true)
-}catch(Exception e){
-    echo 'Exception occured that means stack does not exist'
-}
-    echo 'Check build create stack'
+                 		stackExists = sh (script: 'aws cloudformation describe-stacks --stack-name aws-code-deploy-${Environment}',returnStdout: true)
+					}catch(Exception e){
+					}
 
                 if(!stackExists) {
+                echo "Creating a new stack"
                 sh 'aws cloudformation create-stack --stack-name aws-code-deploy-${Environment} --template-url ${TemplateName} --capabilities CAPABILITY_IAM --parameters ParameterKey=MaxNoOfInstances,ParameterValue=${MaxServers} ParameterKey=MinNoOfInstances,ParameterValue=${MinServers}'
                 sh 'aws cloudformation wait stack-create-complete --stack-name aws-code-deploy-${Environment}'
                 }else{
                 try{
+                echo "Updating an existing stack"
                 sh 'aws cloudformation update-stack --stack-name aws-code-deploy-${Environment} --template-url ${TemplateName} --capabilities CAPABILITY_IAM --parameters ParameterKey=MaxNoOfInstances,ParameterValue=${MaxServers} ParameterKey=MinNoOfInstances,ParameterValue=${MinServers}'
                 sh 'aws cloudformation wait stack-update-complete --stack-name aws-code-deploy-${Environment}'
                 }catch(Exception e){
-                echo 'No Need to make updates so skipping'
+                		echo 'Updates to existing stack failed !'
                 }
                 }
 }
