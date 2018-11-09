@@ -23,6 +23,8 @@ File propsFile = new File('pipeline/config.properties')
 props.load(propsFile.newDataInputStream())
 props.setProperty(propertyName, elbJson.toString())
 props.store(propsFile.newWriter(), null)
+props.load(propsFile.newDataInputStream())
+
 sleep time: 1, unit: 'MINUTES'
 config = readProperties file:'pipeline/config.properties' 
 return props.getProperty(propertyName)
