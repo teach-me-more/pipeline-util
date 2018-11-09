@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def  call() {
+def  call(deploymentUnitName) {
 echo 'Deploying System to UAT environment'
             deployToAws(deploymentUnitName,"UAT")
               def uatUrl = populateTestUrl(deploymentUnitName,"UAT")
