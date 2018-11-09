@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
-def String call(elbJson) {
+def String call(deploymentUnitName) {
+def elbJson = sh (script: 'aws elb describe-load-balancers --load-balancer-name GIAMWebLoadBalance',returnStdout: true)
 elbJson = elbJson.substring(elbJson.indexOf("\"DNSName\":"),elbJson.length())
 elbJson = elbJson.substring(0,elbJson.indexOf(","))
 elbJson = elbJson.replace("\"DNSName\": ","http://")
