@@ -15,6 +15,7 @@ def call(deploymentUnitName,environment) {
                 }else{
                 try{
                 echo "Tearing off an existing environment - ${stackName}"
+                sh "aws cloudformation delete-stack --stack-name ${stackName}"
                 }catch(Exception e){
                 		echo 'Updates to existing stack failed !'
                 }
