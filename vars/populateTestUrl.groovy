@@ -9,7 +9,6 @@ File propsFile = new File('pipeline/config.properties')
 props.load(propsFile.newDataInputStream())
 props.setProperty('TEST_SERVER_BASE_URL', elbJson.toString())
 props.store(propsFile.newWriter(), null)
-props.load(propsFile.newDataInputStream())
-
-return elbJson
+config = readProperties file:'pipeline/config.properties' 
+return props.getProperty('TEST_SERVER_BASE_URL')
 }
