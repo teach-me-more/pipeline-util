@@ -19,16 +19,14 @@ elbJson = elbJson.substring(elbJson.indexOf("\"DNSName\":"),elbJson.length())
 elbJson = elbJson.substring(0,elbJson.indexOf(","))
 elbJson = elbJson.replace("\"DNSName\": ","http://")
 elbJson = elbJson.replace("\"","")
-Properties props = new Properties()
-File propsFile = new File('pipeline/config.properties')
-props.load(propsFile.newDataInputStream())
-props.setProperty(propertyName, elbJson.toString())
-props.store(propsFile.newWriter(), null)
-props.load(propsFile.newDataInputStream())
+//Properties props = new Properties()
+//File propsFile = new File('pipeline/config.properties')
+//props.load(propsFile.newDataInputStream())
+//props.setProperty(propertyName, elbJson.toString())
+//props.store(propsFile.newWriter(), null)
+//props.load(propsFile.newDataInputStream())
 
-println(props.getProperty(propertyName)) 
-println("Prnted");
-sleep time: 1, unit: 'MINUTES'
+//println(props.getProperty(propertyName)) 
 //config = readProperties file:'pipeline/config.properties' 
-return props.getProperty(propertyName)
+return elbJson
 }
