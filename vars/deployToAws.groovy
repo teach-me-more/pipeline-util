@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call(deploymentUnitName,environment) {
                  def stackExists
-                 def currentUnit="${deploymentUnit}-${environment}"
+                 def currentUnit="${deploymentUnitName}-${environment}"
                  def stackName ="${currentUnit}-stack"
                  
                    try{
