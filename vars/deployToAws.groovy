@@ -2,7 +2,7 @@
 def call(deploymentUnitName) {
                  def stackExists
                    try{
-                 		stackExists = sh (script: "aws cloudformation describe-stacks --${deploymentUnitName}",returnStdout: true)
+                 		stackExists = sh (script: "aws cloudformation describe-stacks ----stack-name ${deploymentUnitName}",returnStdout: true)
 					}catch(Exception e){
 					}
 
