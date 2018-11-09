@@ -7,6 +7,7 @@ def call(deploymentUnitName,environment) {
                    try{
                  		stackExists = sh (script: "aws cloudformation describe-stacks --stack-name ${stackName}",returnStdout: true)
 					}catch(Exception e){
+						echo "warning in terminating"
 					}
 
                 if(!stackExists) {
