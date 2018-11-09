@@ -27,7 +27,7 @@ props.store(propsFile.newWriter(), null)
 props.load(propsFile.newDataInputStream())
 
 println(props.getProperty(propertyName)) 
-prinln("Prnted");
+println("Prnted");
 sleep time: 1, unit: 'MINUTES'
 //config = readProperties file:'pipeline/config.properties' 
 return props.getProperty(propertyName)
