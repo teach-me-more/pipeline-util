@@ -12,7 +12,7 @@ def call(deploymentUnitName,environment) {
                 if(!stackExists) {
                 echo "Creating a new stack"
                 sh "aws cloudformation create-stack --stack-name ${stackName} --template-url ${TemplateName} --capabilities CAPABILITY_IAM --parameters ParameterKey=deploymentUnit,ParameterValue=${currentUnit} ParameterKey=MaxNoOfInstances,ParameterValue=${MaxServers} ParameterKey=MinNoOfInstances,ParameterValue=${MinServers}"
-                sh "aws cloudformation wait stack-create-complete --stack-name ${deploymentUnitName}"
+                sh "aws cloudformation wait stack-create-complete --stack-name ${stackName}"
                 }else{
                 try{
                 echo "Updating an existing stack"
