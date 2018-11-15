@@ -11,7 +11,7 @@ if("${expectedResult}"=="${TEST_RESULT}"){
  sh "mvn verify -DTEST_SERVER_BASE_URL=${TEST_URL}"
 }else{
  echo "Build deployment failed  !"
- fail("Application Sanity chek failed")
+ error("Application Sanity check failed")
 }
 
 }
