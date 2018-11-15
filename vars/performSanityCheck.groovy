@@ -5,6 +5,7 @@ echo "Application deployed with url - ${TEST_URL}"
 				
 def TEST_RESULT
 def expectedResult = 'Hello World !'
+sleep time: 2, unit: 'MINUTES'
 TEST_RESULT = sh returnStdout: true, script: "curl $TEST_URL"
 if("${expectedResult}"=="${TEST_RESULT}"){
  echo "Build deployed successfully ! test result== ${TEST_RESULT} "
