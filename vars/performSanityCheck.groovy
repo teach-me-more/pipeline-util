@@ -10,6 +10,7 @@ TEST_RESULT = sh returnStdout: true, script: "curl $TEST_URL"
 if("${expectedResult}"=="${TEST_RESULT}"){
  echo "Build deployed successfully ! test result== ${TEST_RESULT} "
  sh "mvn verify -DTEST_SERVER_BASE_URL=${TEST_URL}"
+ echo "Application is deployed and available for testing at ${TEST_URL}"
 }else{
  echo "Build deployment failed  !"
  error("Application Sanity check failed")

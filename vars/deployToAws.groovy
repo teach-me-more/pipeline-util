@@ -1,8 +1,10 @@
 #!/usr/bin/env groovy
 def call(deploymentUnitName,environment) {
+
 	def stackExists
 	def currentUnit="${deploymentUnitName}-${environment}"
 	def stackName ="${currentUnit}-stack"
+	echo "Starting application with stack id == ${stackName}"
 
 	try{
 		stackExists = sh (script: "aws cloudformation describe-stacks --stack-name ${stackName}",returnStdout: true)
