@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def call(deploymentUnitName,environment) {
+def call(deploymentUnitName) {
 TEST_URL= populateTestUrl(deploymentUnitName,"Dev");
 echo "Application deployed with url - ${TEST_URL}"
 				
