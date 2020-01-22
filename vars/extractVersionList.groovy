@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-import com.rbasystems.helper.PipelineHelper;
+import com.rbasystems.utility.PipelineHelper;
 def call(productName) {
 	
 def versions=PipelineHelper.versionList("commons-logging");

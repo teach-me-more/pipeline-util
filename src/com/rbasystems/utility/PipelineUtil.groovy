@@ -1,10 +1,10 @@
-package com.rbasystems.groovy
+package com.rbasystems.utility;
+
 import groovy.util.XmlSlurper;
 import groovy.json.JsonSlurper;
 
 class PipelineHelper {
 	static String versionList(productName) {
-		println "Hello World";
 		println "Extracting version information for "+productName;
 		def XmlSlurper xmlSlurper=new XmlSlurper();
 		def jsonSlurper = new JsonSlurper();
