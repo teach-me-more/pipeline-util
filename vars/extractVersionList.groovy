@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
-import com.rbasystems.utility.PipelineHelper;
+import com.rbasystems.utility.PipelineUtil;
 def call(productName) {
 	println "Hello World try to get version";
 	
-def versions=PipelineHelper.versionList("commons-logging");
+def versions=PipelineUtil.versionList("commons-logging");
 
 println "version infor in extractVersionList $versions";
 input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
