@@ -3,7 +3,7 @@ package com.rbasystems.utility;
 import groovy.util.XmlSlurper;
 import groovy.json.JsonSlurper;
 
-class PipelineHelper {
+class PipelineUtil {
 	static String versionList(productName) {
 		println "Extracting version information for "+productName;
 		def XmlSlurper xmlSlurper=new XmlSlurper();
