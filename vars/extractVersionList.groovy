@@ -12,10 +12,8 @@ def call(config) {
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
 		
 		def componentVersion = " extendedChoice(description: '', multiSelectDelimiter: ',', name:$component, saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: $versions, visibleItemCount: 2)";
-		choiceList.add(choiceList);
-		}
-	println "Hello World try to get version---- $config";
-	
+		choiceList.add(componentVersion);
+		}	
 
 println "version infor in extractVersionList $choiceList";
 
