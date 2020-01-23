@@ -19,24 +19,8 @@ def call(config) {
 		
 	println "Input submitted by  and selection=$deploymentSelections "
 	
-	//println new JsonBuilder(deploymentSelections).toPrettyString();
-	
-//	def generator = new JsonGenerator.Options().excludeNulls()
-//	.dateFormat('yyyy@MM')
-//	.excludeFieldsByName('approver')
-//	.excludeFieldsByType(URL)
-//	.build();
-//	def jsonVal= generator.toJson(deploymentSelections);
 	def json = new groovy.json.JsonBuilder()
-	json : deploymentSelections
+	json "info": deploymentSelections
 	def file = new File("$WORKSPACE/release.json")
 	file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))
-//	writeJSON file: 'output.json', json: json, pretty: 4
-	
-//input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
-//input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
-
-// def selectedProperty = input (message: 'Select Version', parameters: [choice(choices: proxyVersions, description: 'Allow selecting a version of artifact', name: 'Please select a version of Proxy to deploy')], submitter: 'admin', submitterParameter: 'selectedVersion');
-  // def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: proxyVersions, description: 'Properties', name: 'prop'] ])
-    
 }
