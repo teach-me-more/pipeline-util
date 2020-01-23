@@ -27,7 +27,9 @@ def call(config) {
 //	.excludeFieldsByType(URL)
 //	.build();
 //	def jsonVal= generator.toJson(deploymentSelections);
-	writeJSON file: 'output.json', json: new JsonBuilder(deploymentSelections).toPrettyString(), pretty: 4
+	def json = new groovy.json.JsonBuilder()
+	json "people": deploymentSelections
+	writeJSON file: 'output.json', json: json.toString(), pretty: 4
 	
 //input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
 //input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
