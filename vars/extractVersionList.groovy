@@ -29,7 +29,9 @@ def call(config) {
 //	def jsonVal= generator.toJson(deploymentSelections);
 	def json = new groovy.json.JsonBuilder()
 	json "people": deploymentSelections
-	writeJSON file: 'output.json', json: json, pretty: 4
+	def file = new File("$WORKSPACE/people.json")
+	file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))
+//	writeJSON file: 'output.json', json: json, pretty: 4
 	
 //input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
 //input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
