@@ -18,6 +18,6 @@ class PipelineUtil {
 				}
 				println "Property: $proxyVersions";
 				
-				return productName;
+				return proxyVersions;
 	}
 }
