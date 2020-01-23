@@ -10,13 +10,14 @@ def call(config) {
 	componentList.each{ component ->
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
-		def firstChoice=extendedChoice(description: 'Select appropiate '+component +' version for deployment , leave empty if not part of release.', multiSelectDelimiter: ',', name: component+'     ',  type: 'PT_SINGLE_SELECT', value: versions);
+		def firstChoice=extendedChoice(description: 'Select appropiate '+component +' version for deployment , leave empty if not part of release.', multiSelectDelimiter: ',', name: component,  type: 'PT_SINGLE_SELECT', value: versions);
 		choiceList.add(firstChoice);
 		}
 	def deploymentSelections = 	input(message: 'Please select component version for release package.', parameters: choiceList, submitter: 'admin', submitterParameter: 'approver');
 		
 	println "Input submitted by  and selection=$deploymentSelections "
-
+	writeJSON file: 'output.json', json: deploymentSelections, pretty: 4
+	
 //input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
 //input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
 
