@@ -28,8 +28,8 @@ def call(config) {
 //	.build();
 //	def jsonVal= generator.toJson(deploymentSelections);
 	def json = new groovy.json.JsonBuilder()
-	json "people": deploymentSelections
-	def file = new File("$WORKSPACE/people.json")
+	json "": deploymentSelections
+	def file = new File("$WORKSPACE/release.json")
 	file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))
 //	writeJSON file: 'output.json', json: json, pretty: 4
 	
