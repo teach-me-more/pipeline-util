@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 import com.rbasystems.utility.PipelineUtil;
+import hudson.model.ParameterDefinition;
 def call(config) {
 	def repoUrl=config["REPO_ROOT_URL"];
 	def groupId=config["GROUP_ID"];
@@ -7,7 +8,7 @@ def call(config) {
 	def componentList=componentListStr.split(",");
 	def choiceList = new ArrayList();
 	def counter=0;
-	def choiceArr=new Object[componentList.length];
+	def choiceArr=new ParameterDefinition[componentList.length];
 	componentList.each{ component ->
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
