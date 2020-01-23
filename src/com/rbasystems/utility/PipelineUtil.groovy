@@ -10,9 +10,11 @@ class PipelineUtil {
 		def jsonSlurper = new JsonSlurper();
 				
 				def nexusData = xmlSlurper.parse(repoUrl+groupId+artifactId);
-				def versions="Select Version";
+				def versions="";
 				nexusData.data.artifact.each { item ->
-					def versionList=""+item.artifactId+"-"+ item.version;
+				//	def versionList=""+item.artifactId+"-"+ item.version;
+					def versionList=""+item.version;
+					
 					versions=versions+","+versionList;
 				}				
 				return versions;

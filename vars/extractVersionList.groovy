@@ -16,7 +16,14 @@ def call(config) {
 	def deploymentSelections = 	input(message: 'Please select component version for release package.', parameters: choiceList, submitter: 'admin', submitterParameter: 'approver');
 		
 	println "Input submitted by  and selection=$deploymentSelections "
-	writeJSON file: 'output.json', json: deploymentSelections, pretty: 4
+	def generator = new JsonGenerator.Options()
+	.excludeNulls()
+	.dateFormat('yyyy@MM')
+	.excludeFieldsByName('approver')
+	.excludeFieldsByType(URL)
+	.build();
+	def jsonVal= generator.toJson(deploymentSelections);
+	writeJSON file: 'output.json', json: jsonVal, pretty: 4
 	
 //input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
 //input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
