@@ -6,20 +6,21 @@ def call(config) {
 	def  componentListStr=config["COMPONENT_LIST"];
 	def componentList=componentListStr.split(",");
 	def choiceList = new ArrayList();
-
+	def counter=0;
+	dev choiceArr=new Array[componentList.length];
 	componentList.each{ component ->
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
-		def firstChoice=extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version',  type: 'PT_SINGLE_SELECT', value: versions);
-		def secondChoice=extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Versions',  type: 'PT_SINGLE_SELECT', value: versions);
-		
-		input message: 'Please select a version for deployment', parameters: [firstChoice,secondChoice], submitter: 'admin', submitterParameter: 'selectedVersion'
-		
-		//def componentVersion = " extendedChoice(description: '', multiSelectDelimiter: ',', name:$component, saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: $versions, visibleItemCount: 2)";
-		choiceList.add(componentVersion);
+		def firstChoice=extendedChoice(description: '', multiSelectDelimiter: ',', name: '$component',  type: 'PT_SINGLE_SELECT', value: versions);
+	//	def secondChoice=extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Versions',  type: 'PT_SINGLE_SELECT', value: versions);
+		choiceArr[counter]=firstChoice;
+		counter++;
+		choiceList.add(firstChoice);
 		}
 	
-
+		input message: 'Please select a version for deployment', parameters: choiceArr, submitter: 'admin', submitterParameter: 'selectedVersion'
+		
+	
 println "version infor in extractVersionList $choiceList";
 
 //input message: 'Please select a version for deployment', parameters: choiceList, submitter: 'admin', submitterParameter: 'selectedVersion'
