@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 import com.rbasystems.utility.PipelineUtil;
 import hudson.model.ParameterDefinition;
-import groovy.json.JsonGenerator.Options;
+import groovy.json.JsonGenerator;
 def call(config) {
 	def repoUrl=config["REPO_ROOT_URL"];
 	def groupId=config["GROUP_ID"];
@@ -17,8 +17,7 @@ def call(config) {
 	def deploymentSelections = 	input(message: 'Please select component version for release package.', parameters: choiceList, submitter: 'admin', submitterParameter: 'approver');
 		
 	println "Input submitted by  and selection=$deploymentSelections "
-	def generator = new JsonGenerator.Options()
-	.excludeNulls()
+	def generator = new JsonGenerator.Options().excludeNulls()
 	.dateFormat('yyyy@MM')
 	.excludeFieldsByName('approver')
 	.excludeFieldsByType(URL)
