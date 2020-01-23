@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 import com.rbasystems.utility.PipelineUtil;
-def call(productName) {
-	println "Hello World try to get version";
+def call(config) {
+	println "Hello World try to get version---- $config";
 	
 def versions=PipelineUtil.versionList("commons-logging");
 
