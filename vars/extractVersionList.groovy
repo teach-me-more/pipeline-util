@@ -11,7 +11,7 @@ def call(config) {
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
 		
-		def componentVersion = new extendedChoice(description: '', multiSelectDelimiter: ',', name:component, saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2);
+		def componentVersion = " extendedChoice(description: '', multiSelectDelimiter: ',', name:$component, saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: $versions, visibleItemCount: 2)";
 		choiceList.add(choiceList)
 		}
 	println "Hello World try to get version---- $config";
