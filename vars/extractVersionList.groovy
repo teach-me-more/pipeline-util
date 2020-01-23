@@ -11,7 +11,7 @@ def call(config) {
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
 		
-		 def selectedProperty = input (message: 'Select Version', parameters: [choice(choices: versions.split(","), description: 'Allow selecting a version of artifact', name: 'Please select a version of $component to deploy')], submitter: 'admin', submitterParameter: 'selectedVersion');
+input message: 'Please select a version for deployment', parameters: [extendedChoice(description: '', multiSelectDelimiter: ',', name: 'Version', saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: versions, visibleItemCount: 2)], submitter: 'admin', submitterParameter: 'selectedVersion'
 		
 		//def componentVersion = " extendedChoice(description: '', multiSelectDelimiter: ',', name:$component, saveJSONParameterToFile: false, type: 'PT_SINGLE_SELECT', value: $versions, visibleItemCount: 2)";
 		choiceList.add(componentVersion);
