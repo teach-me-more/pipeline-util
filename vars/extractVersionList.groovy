@@ -6,7 +6,7 @@ def call(config) {
 	def  componentListStr=config["COMPONENT_LIST"];
 	def componentList=componentListStr.split(",");
 	def choiceList = new ArrayList();
-	
+
 	componentList.each{ component ->
 		println "loading version information for groupId=$groupId & artifact Id=$component from $repoUrl";
 		def versions=PipelineUtil.versionList(repoUrl,groupId,component);
